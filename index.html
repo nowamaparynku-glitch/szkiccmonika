@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monika — Doradca ubezpieczeniowy UK</title>
+<meta name="description" content="Pomagam Polakom w UK od 14 lat zrozumieć, za co naprawdę płacą i jakie ubezpieczenie ma sens. Bezpłatna konsultacja 30 minut.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0c0a08;
+    --bg-elevated: #14110d;
+    --bg-surface: #1a1612;
+    --border: #2a241d;
+    --text: #ece5d4;
+    --text-soft: #c9bfa9;
+    --text-muted: #847b6a;
+    --gold: #c2a368;
+    --gold-bright: #d4b574;
+    --gold-deep: #8a7340;
+    --gold-glow: rgba(194, 163, 104, 0.12);
+
+    --display: 'Cormorant Garamond', 'Georgia', serif;
+    --body: 'Manrope', -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ─────────────────────────────────────────────
+     NOTATKA OD KAMILA (na samej górze, oddzielona stylistycznie)
+     ───────────────────────────────────────────── */
+  .kamil-note {
+    background: #1f1a14;
+    border-bottom: 1px solid #3a3225;
+    padding: 28px 24px;
+    font-family: var(--body);
+    color: #d6cdb8;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .kamil-note-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .kamil-note-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #b89968;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .kamil-note p { margin-bottom: 10px; }
+  .kamil-note p:last-child { margin-bottom: 0; }
+  .kamil-note ol {
+    margin: 10px 0 14px 22px;
+    padding: 0;
+  }
+  .kamil-note ol li { margin-bottom: 6px; }
+  .kamil-note strong { color: #e8dec5; font-weight: 600; }
+
+  /* ─────────────────────────────────────────────
+     NAV
+     ───────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12, 10, 8, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--border); }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand-sub {
+    font-family: var(--body);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-soft);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 10px 18px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+  }
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--bg) !important;
+  }
+
+  .nav-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--text); background: none; border: none; }
+
+  /* ─────────────────────────────────────────────
+     HERO
+     ───────────────────────────────────────────── */
+  .hero {
+    padding: 100px 0 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, var(--gold-glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .photo-frame {
+    width: 110px; height: 110px;
+    margin: 0 auto 36px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    padding: 4px;
+    background: var(--bg-elevated);
+  }
+  .photo-frame .photo-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1612 0%, #2a2218 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    color: var(--gold);
+    font-size: 42px;
+    font-style: italic;
+  }
+  .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  .hero-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--gold);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--body);
+  }
+  .btn-primary:hover {
+    background: var(--gold-bright);
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(194, 163, 104, 0.25);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+  }
+
+  .micro-trust {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─────────────────────────────────────────────
+     SECTION HEADING SYSTEM
+     ───────────────────────────────────────────── */
+  .section {
+    padding: 100px 0;
+    position: relative;
+  }
+  .section-divider {
+    border-top: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  h2.section-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(30px, 4.5vw, 46px);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-lead {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  /* ─────────────────────────────────────────────
+     PROBLEM SECTION
+     ───────────────────────────────────────────── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .problem-item {
+    padding: 22px 24px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--gold-deep);
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+  .problem-item strong {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  .insurance-types {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .insurance-types .it {
+    text-align: center;
+    padding: 28px 16px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.3s ease;
+  }
+  .insurance-types .it:hover { border-color: var(--gold-deep); }
+  .insurance-types .it-name {
+    font-family: var(--display);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .insurance-types .it-pl {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ─────────────────────────────────────────────
+     EDUCATION SECTION (definicje)
+     ───────────────────────────────────────────── */
+  .edu-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(24px, 3.5vw, 34px);
+    line-height: 1.35;
+    color: var(--text);
+    text-align: center;
+    max-width: 720px;
+    margin: 40px auto 56px;
+    padding: 36px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .edu-quote::before, .edu-quote::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .edu-quote::before { top: -1px; }
+  .edu-quote::after { bottom: -1px; }
+  .edu-quote span { color: var(--gold); font-weight: 500; }
+
+  .edu-questions {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    gap: 18px;
+  }
+  .edu-q {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-q:last-child { border-bottom: none; }
+  .edu-q-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 30px;
+  }
+  .edu-q-text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-soft);
+  }
+
+  .edu-conclusion {
+    text-align: center;
+    margin-top: 50px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text);
+    line-height: 1.5;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ─────────────────────────────────────────────
+     CONSULTATION SECTION
+     ───────────────────────────────────────────── */
+  .consult-card {
+    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    border-radius: 2px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .consult-card::before {
+    content: '30 min';
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .consult-title {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+  .consult-list {
+    list-style: none;
+    display: grid;
+    gap: 16px;
+  }
+  .consult-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-soft);
+  }
+  .consult-list li::before {
+    content: '';
+    flex-shrink: 0;
+    margin-top: 10px;
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .consult-note {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    font-family: var(--display);
+    font-size: 17px;
+    color: var(--text-soft);
+  }
+
+  /* ─────────────────────────────────────────────
+     ABOUT SECTION
+     ───────────────────────────────────────────── */
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 2px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-elevated), var(--bg-surface));
+    border: 1px solid var(--border);
+    padding: 8px;
+    position: relative;
+  }
+  .about-photo-inner {
+    width: 100%; height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #1a1612, #2a2218);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .about-photo-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .about-photo-inner .placeholder {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 80px;
+  }
+  .about-photo::after {
+    content: '14 lat doświadczenia';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    background: var(--gold);
+    color: var(--bg);
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .about-content h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .about-role {
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .about-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  .about-specialties {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .about-specialties-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .about-specialties ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+  }
+  .about-specialties li {
+    font-size: 14px;
+    color: var(--text-soft);
+    padding-left: 16px;
+    position: relative;
+  }
+  .about-specialties li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 8px;
+    top: 6px;
+  }
+
+  /* ─────────────────────────────────────────────
+     WHO SECTION (komu pomagam)
+     ───────────────────────────────────────────── */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 40px;
+    border: 1px solid var(--border);
+  }
+  .who-item {
+    background: var(--bg);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  .who-item:hover { background: var(--bg-elevated); }
+  .who-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .who-text {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  /* ─────────────────────────────────────────────
+     TESTIMONIALS (placeholder)
+     ───────────────────────────────────────────── */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .testimonial {
+    padding: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+  .testimonial-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .testimonial-author {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .testimonial-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .placeholder-badge {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+    padding: 3px 8px;
+  }
+
+  /* ─────────────────────────────────────────────
+     FAQ
+     ───────────────────────────────────────────── */
+  .faq {
+    margin-top: 40px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    cursor: pointer;
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    transition: color 0.2s ease;
+    list-style: none;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q:hover { color: var(--gold); }
+  .faq-q::after {
+    content: '+';
+    font-size: 24px;
+    color: var(--gold);
+    font-weight: 300;
+    margin-left: 16px;
+    transition: transform 0.3s ease;
+  }
+  details[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    padding: 0 0 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    font-weight: 300;
+  }
+
+  /* ─────────────────────────────────────────────
+     FINAL CTA
+     ───────────────────────────────────────────── */
+  .final-cta {
+    text-align: center;
+    padding: 120px 24px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; height: 600px;
+    background: radial-gradient(ellipse, var(--gold-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .final-cta h2 {
+    font-family: var(--display);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .final-cta h2 em { font-style: italic; color: var(--gold); }
+  .final-cta-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .final-cta-list {
+    list-style: none;
+    margin: 32px auto;
+    max-width: 480px;
+    text-align: left;
+    display: grid;
+    gap: 12px;
+  }
+  .final-cta-list li {
+    padding-left: 24px;
+    position: relative;
+    font-size: 15px;
+    color: var(--text-soft);
+    font-weight: 300;
+  }
+  .final-cta-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ─────────────────────────────────────────────
+     FOOTER
+     ───────────────────────────────────────────── */
+  footer {
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: var(--display);
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .footer-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+  .footer-meta a { color: var(--gold); text-decoration: none; }
+
+  /* ─────────────────────────────────────────────
+     ANIMATIONS
+     ───────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fadein { animation: fadeUp 0.8s ease both; }
+  .hero-inner > * { animation: fadeUp 0.7s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.35s; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE
+     ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--bg);
+      padding: 24px;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-toggle { display: block; }
+
+    .about-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { max-width: 280px; margin: 0 auto; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .insurance-types { grid-template-columns: repeat(2, 1fr); }
+    .who-grid { grid-template-columns: 1fr; }
+    .testimonials { grid-template-columns: 1fr; }
+    .consult-card { padding: 36px 24px; }
+    .consult-card::before { position: static; display: block; margin-bottom: 16px; }
+    .about-specialties ul { grid-template-columns: 1fr; }
+    .section { padding: 70px 0; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 60px 0 80px; }
+    .kamil-note { padding: 22px 18px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NOTATKA OD KAMILA (do podmiany / usunięcia w wersji finalnej)
+     ═══════════════════════════════════════════════ -->
+<div class="kamil-note">
+  <div class="kamil-note-inner">
+    <span class="kamil-note-label">📝 Notatka od Kamila</span>
+    <p>Moniko, krótka info zanim obejrzysz mockup. Przy zapisach na konsultację mamy 3 opcje technologiczne, na razie dałem WhatsApp jako główny przycisk, ale możemy to zmienić:</p>
+    <ol>
+      <li><strong>WhatsApp</strong> klika i pisze do Ciebie. Najmniej oporu, w UK ludzie tak wolą.</li>
+      <li><strong>Calendly</strong> sami rezerwują slot w Twoim kalendarzu. Wygląda zawodowo, wymaga konta i pilnowania kalendarza.</li>
+      <li><strong>Formularz</strong> zostawiają mail i telefon, Ty oddzwaniasz. Pełna kontrola nad follow-upem.</li>
+    </ol>
+    <p>Daj znać która opcja Ci pasuje. Można też dwie naraz np. WhatsApp jako główne plus formularz na dole. Numer WhatsApp dorzucę jak się zdecydujesz.</p>
+    <p>Reszta to mockup do feedbacku, czyli kolory, typografia, układ, treści. Powiedz co Ci pasuje, co nie, co chciałabyś dodać lub wywalić. Ten pasek na samej górze znika w wersji finalnej.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      Monika
+      <span class="brand-sub">Insurance Adviser UK</span>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="#problem">Dlaczego to ważne</a>
+      <a href="#about">O mnie</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="nav-cta">Konsultacja</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="photo-frame">
+      <div class="photo-inner">
+        <img src="images/monika.jpg" alt="Monika">
+        M
+      </div>
+    </div>
+
+    <h1>Czy Twoja polisa <em>naprawdę zadziała</em> wtedy, kiedy będzie potrzebna?</h1>
+
+    <p class="hero-sub">
+      Większość Polaków w UK ma jakieś ubezpieczenie. Mało kto wie, co dokładnie obejmuje. Pomagam zrozumieć, za co naprawdę płacisz i czy Twoja rodzina jest realnie zabezpieczona.
+    </p>
+
+    <div class="hero-cta-wrap">
+      <a href="https://wa.me/" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        Napisz na WhatsApp
+      </a>
+      <span class="micro-trust">Bezpłatna rozmowa 30 minut · Bez zobowiązań · Po polsku</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROBLEM SECTION
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider" id="problem">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0;">
+      <span class="eyebrow">Dlaczego to ważne</span>
+      <h2 class="section-title">National Insurance to <em>nie to samo</em> co realne zabezpieczenie rodziny.</h2>
+      <p class="section-lead">
+        Wiele osób zakłada, że skoro płaci składki w UK, państwo zabezpieczy rodzinę w trudnej sytuacji. W praktyce świadczenia państwowe często nie wystarczają nawet na podstawowe koszty życia.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-item">
+        <strong>Nowotwór</strong>
+        Długie leczenie, brak dochodu, koszty życia bez zmian.
+      </div>
+      <div class="problem-item">
+        <strong>Poważna choroba</strong>
+        Świadczenia państwowe pokrywają minimum, nie standard życia.
+      </div>
+      <div class="problem-item">
+        <strong>Utrata możliwości pracy</strong>
+        Statutory Sick Pay to obecnie około £116 tygodniowo.
+      </div>
+      <div class="problem-item">
+        <strong>Śmierć partnera</strong>
+        Bereavement Support Payment to jednorazowa kwota, dalej musisz radzić sobie sam.
+      </div>
+    </div>
+
+    <div class="insurance-types">
+      <div class="it">
+        <div class="it-name">Life Cover</div>
+        <div class="it-pl">Ubezpieczenie na życie</div>
+      </div>
+      <div class="it">
+        <div class="it-name">Critical Illness</div>
+        <div class="it-pl">Poważne choroby</div>
+      </div>
+      <div class="it">
+        <div class="it-name">Income Protection</div>
+        <div class="it-pl">Ochrona dochodu</div>
+      </div>
+      <div class="it">
+        <div class="it-name">Accident Cover</div>
+        <div class="it-pl">Wypadki</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     EDUCATION SECTION (definicje)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0;">
+      <span class="eyebrow">Najważniejsze są definicje</span>
+      <h2 class="section-title">Nie każde ubezpieczenie <em>„na nowotwór”</em> działa tak samo.</h2>
+      <p class="section-lead">
+        To, co najważniejsze, znajduje się w definicjach. Dwóch ubezpieczycieli może powiedzieć dokładnie to samo, a wypłacić zupełnie różne kwoty. Albo nie wypłacić nic.
+      </p>
+    </div>
+
+    <div class="edu-quote">
+      „Jesteś ubezpieczony na <span>cancer</span>.”
+    </div>
+
+    <p style="text-align: center; font-size: 16px; color: var(--text-muted); margin-bottom: 36px; font-style: italic;">
+      Brzmi tak samo u każdego ubezpieczyciela. W praktyce różnice są ogromne.
+    </p>
+
+    <div class="edu-questions">
+      <div class="edu-q">
+        <span class="edu-q-num">i.</span>
+        <span class="edu-q-text">Jakie stadium choroby obejmuje polisa? Czy wczesne wykrycie też się kwalifikuje?</span>
+      </div>
+      <div class="edu-q">
+        <span class="edu-q-num">ii.</span>
+        <span class="edu-q-text">Jakie konkretne typy nowotworów są objęte ochroną, a które wyłączone?</span>
+      </div>
+      <div class="edu-q">
+        <span class="edu-q-num">iii.</span>
+        <span class="edu-q-text">Czy wypłata jest pełna, czy częściowa? Jaki procent sumy ubezpieczenia?</span>
+      </div>
+      <div class="edu-q">
+        <span class="edu-q-num">iv.</span>
+        <span class="edu-q-text">Kiedy realnie następuje wypłata? Po diagnozie, po leczeniu, czy dopiero po określonym czasie?</span>
+      </div>
+      <div class="edu-q">
+        <span class="edu-q-num">v.</span>
+        <span class="edu-q-text">Jakie są wyłączenia w drobnym druku? Co automatycznie pozbawia Cię prawa do świadczenia?</span>
+      </div>
+    </div>
+
+    <p class="edu-conclusion">
+      To właśnie te szczegóły decydują o tym,<br>
+      czy polisa pomoże wtedy, kiedy naprawdę będzie potrzebna.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CONSULTATION
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0;">
+      <span class="eyebrow">Bezpłatna konsultacja</span>
+      <h2 class="section-title">Co dokładnie <em>omówimy</em> podczas spotkania?</h2>
+    </div>
+
+    <div class="consult-card">
+      <h3 class="consult-title">30 minut, bez zobowiązań, po polsku.</h3>
+      <ul class="consult-list">
+        <li>Sprawdzimy, co już posiadasz i co dokładnie obejmują Twoje obecne polisy.</li>
+        <li>Wyjaśnię prostym językiem, jak działają ubezpieczenia na rynku brytyjskim.</li>
+        <li>Pokażę różnice między dobrymi a słabymi polisami na konkretnych przykładach.</li>
+        <li>Wytłumaczę definicje z OWU, które decydują o realnej wypłacie świadczenia.</li>
+        <li>Sprawdzimy, czy Twoja rodzina jest faktycznie zabezpieczona, czy tylko teoretycznie.</li>
+        <li>Odpowiem na wszystkie pytania, nawet te które wydają się głupie.</li>
+      </ul>
+      <p class="consult-note">
+        Nie musisz nic kupować. Celem konsultacji jest przede wszystkim zrozumienie tematu, żebyś mógł podjąć świadomą decyzję, niezależnie od tego, czy zdecydujesz się ze mną pracować czy nie.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider" id="about">
+  <div class="wrap">
+    <div class="about-wrap">
+      <div class="about-photo">
+        <div class="about-photo-inner">
+          <img src="images/monika.jpg" alt="Monika">
+          <span class="placeholder">M</span>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="eyebrow">O mnie</span>
+        <h2>Monika</h2>
+        <p class="about-role">Executive Sales Manager · Insurance Adviser</p>
+
+        <p>
+          Od 14 lat pracuję na brytyjskim rynku ubezpieczeniowym. Specjalizuję się w pracy z Polakami mieszkającymi w UK, którzy chcą zabezpieczyć siebie, rodzinę i dochód, ale nie zawsze rozumieją skomplikowany żargon ubezpieczycieli.
+        </p>
+        <p>
+          Moje podejście jest proste: najpierw zrozumieć Twoją sytuację, potem pokazać opcje. Bez wciskania produktów. Bez korpomowy. Po polsku i konkretnie.
+        </p>
+
+        <div class="about-specialties">
+          <span class="about-specialties-label">Specjalizacja</span>
+          <ul>
+            <li>Life Cover</li>
+            <li>Critical Illness Cover</li>
+            <li>Income Protection</li>
+            <li>Accident Protection</li>
+            <li>Family Protection</li>
+            <li>Mortgage Protection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WHO
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0; text-align: center;">
+      <span class="eyebrow">Z kim najczęściej pracuję</span>
+      <h2 class="section-title">Pomagam ludziom, którzy<br><em>chcą wiedzieć, za co płacą</em>.</h2>
+    </div>
+
+    <div class="who-grid">
+      <div class="who-item">
+        <div class="who-num">01</div>
+        <div class="who-text">Rodzinom z dziećmi<br>w UK</div>
+      </div>
+      <div class="who-item">
+        <div class="who-num">02</div>
+        <div class="who-text">Osobom pracującym<br>fizycznie</div>
+      </div>
+      <div class="who-item">
+        <div class="who-num">03</div>
+        <div class="who-text">Self-employed<br>i kontraktorom</div>
+      </div>
+      <div class="who-item">
+        <div class="who-num">04</div>
+        <div class="who-text">Osobom z kredytem<br>hipotecznym</div>
+      </div>
+      <div class="who-item">
+        <div class="who-num">05</div>
+        <div class="who-text">Parom planującym<br>przyszłość razem</div>
+      </div>
+      <div class="who-item">
+        <div class="who-num">06</div>
+        <div class="who-text">Osobom, które chcą<br>sprawdzić obecną polisę</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TESTIMONIALS (placeholder)
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0; text-align: center;">
+      <span class="eyebrow">Opinie klientów</span>
+      <h2 class="section-title">Co mówią <em>osoby z polecenia</em>.</h2>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <p class="testimonial-quote">„Pierwszy raz ktoś mi spokojnie wytłumaczył, co naprawdę mam w polisie. Okazało się, że pół tego nie obejmowało tego, co myślałam.”</p>
+        <div class="testimonial-author">Anna K.</div>
+        <div class="testimonial-meta">Londyn · 2 dzieci</div>
+        <span class="placeholder-badge">przykład</span>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">„Monika tłumaczy po ludzku, nie po sprzedażowemu. Konsultacja była warta każdej minuty.”</p>
+        <div class="testimonial-author">Marek P.</div>
+        <div class="testimonial-meta">Manchester · self-employed</div>
+        <span class="placeholder-badge">przykład</span>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">„Po rozmowie wiedziałam dokładnie, co mi się opłaca, a co to wyrzucanie pieniędzy. Bezcenne.”</p>
+        <div class="testimonial-author">Magda S.</div>
+        <div class="testimonial-meta">Birmingham · z mężem</div>
+        <span class="placeholder-badge">przykład</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════════════ -->
+<section class="section section-divider" id="faq">
+  <div class="wrap">
+    <div class="narrow" style="padding: 0; text-align: center;">
+      <span class="eyebrow">Najczęściej zadawane pytania</span>
+      <h2 class="section-title">Zanim się <em>umówisz</em>.</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary class="faq-q">Czy konsultacja jest faktycznie darmowa?</summary>
+        <div class="faq-a">
+          Tak. Nie pobieram żadnej opłaty za 30-minutową rozmowę, niezależnie od tego, czy zdecydujesz się na jakąkolwiek polisę, czy nie.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Czy muszę coś kupić po konsultacji?</summary>
+        <div class="faq-a">
+          Nie. Wielu klientów po prostu chce zrozumieć temat lub sprawdzić, co mają. Decyzja zawsze należy do Ciebie.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Czy mogę przesłać swoją obecną polisę do analizy?</summary>
+        <div class="faq-a">
+          Tak. Jeśli prześlesz aktualne dokumenty przed spotkaniem, podczas konsultacji omówimy konkretnie, co masz, czego Ci brakuje i czy płacisz uczciwą cenę za to, co dostajesz.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Ile trwa rozmowa?</summary>
+        <div class="faq-a">
+          Około 30 minut. Czasem krócej, czasem dłużej, w zależności od ilości pytań. Nie spieszę się.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Czy konsultacja odbywa się online?</summary>
+        <div class="faq-a">
+          Tak. Rozmawiamy online, najczęściej przez Zoom albo WhatsApp Video. Możemy też porozmawiać przez telefon, jeśli tak Ci wygodniej.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">W jakim języku rozmawiamy?</summary>
+        <div class="faq-a">
+          Po polsku. Wszystkie definicje i pojęcia tłumaczę z brytyjskiej terminologii ubezpieczeniowej na zrozumiały język.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Nie czekaj, aż będzie <em>za późno</em><br>żeby sprawdzić swoją polisę.</h2>
+    <p class="final-cta-sub">
+      Jedna spokojna rozmowa może pomóc Ci zrozumieć:
+    </p>
+    <ul class="final-cta-list">
+      <li>Co naprawdę masz w swojej obecnej polisie</li>
+      <li>Czego Ci brakuje i jakie są realne luki</li>
+      <li>Czy Twoja rodzina byłaby zabezpieczona w trudnej sytuacji</li>
+    </ul>
+    <a href="https://wa.me/" class="btn-primary" style="margin-top: 20px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      Napisz na WhatsApp
+    </a>
+    <p class="micro-trust" style="margin-top: 16px;">Bezpłatna rozmowa · Bez presji · Po polsku</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">Monika</div>
+  <div class="footer-meta">Insurance Adviser · United Kingdom · <a href="https://wa.me/">WhatsApp</a></div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Scroll reveal (for elements with .reveal class if added)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
