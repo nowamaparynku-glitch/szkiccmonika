@@ -4,10 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Monika — Doradca ubezpieczeniowy UK</title>
-<meta name="description" content="Pomagam Polakom w UK od 14 lat zrozumieć, za co naprawdę płacą i jakie ubezpieczenie ma sens. Bezpłatna konsultacja 30 minut.">
+<meta name="description" content="Pomagam Polakom w UK od 14 lat zrozumieć, za co naprawdę płacą i jakie ubezpieczenie ma sens. Bezpłatna konsultacja.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════════════════════════
+     KONFIGURACJA DO PODMIANY (Kamil)
+     ═══════════════════════════════════════════════════════
+     1. WhatsApp:  zmień WHATSAPP_NUMBER na dole pliku (w <script>)
+     2. Formspree: zmień FORMSPREE_ENDPOINT w atrybucie action sekcji #contact-form
+     3. Zdjęcia:   wgraj do folderu images/ jako:
+                   - images/glowne.jpg  (hero, małe okrągłe)
+                   - images/rodzina.jpg (about, większe kwadratowe)
+     ═══════════════════════════════════════════════════════ -->
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,43 +53,7 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
   .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
-  /* ─────────────────────────────────────────────
-     NOTATKA OD KAMILA (na samej górze, oddzielona stylistycznie)
-     ───────────────────────────────────────────── */
-  .kamil-note {
-    background: #1f1a14;
-    border-bottom: 1px solid #3a3225;
-    padding: 28px 24px;
-    font-family: var(--body);
-    color: #d6cdb8;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .kamil-note-inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-  .kamil-note-label {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: #b89968;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .kamil-note p { margin-bottom: 10px; }
-  .kamil-note p:last-child { margin-bottom: 0; }
-  .kamil-note ol {
-    margin: 10px 0 14px 22px;
-    padding: 0;
-  }
-  .kamil-note ol li { margin-bottom: 6px; }
-  .kamil-note strong { color: #e8dec5; font-weight: 600; }
-
-  /* ─────────────────────────────────────────────
-     NAV
-     ───────────────────────────────────────────── */
+  /* ─── NAV ─────────────────────────────────────── */
   nav {
     position: sticky;
     top: 0;
@@ -153,9 +127,7 @@
 
   .nav-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--text); background: none; border: none; }
 
-  /* ─────────────────────────────────────────────
-     HERO
-     ───────────────────────────────────────────── */
+  /* ─── HERO ─────────────────────────────────────── */
   .hero {
     padding: 100px 0 120px;
     position: relative;
@@ -196,10 +168,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--display);
-    color: var(--gold);
-    font-size: 42px;
-    font-style: italic;
   }
   .photo-frame img {
     width: 100%; height: 100%;
@@ -232,9 +200,7 @@
 
   .hero-cta-wrap {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    justify-content: center;
   }
 
   .btn-primary {
@@ -261,34 +227,7 @@
     box-shadow: 0 8px 24px rgba(194, 163, 104, 0.25);
   }
 
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    background: transparent;
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: all 0.25s ease;
-  }
-  .btn-secondary:hover {
-    border-color: var(--gold);
-  }
-
-  .micro-trust {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.5px;
-  }
-
-  /* ─────────────────────────────────────────────
-     SECTION HEADING SYSTEM
-     ───────────────────────────────────────────── */
+  /* ─── SECTION HEADING SYSTEM ────────────────── */
   .section {
     padding: 100px 0;
     position: relative;
@@ -328,9 +267,7 @@
     margin-bottom: 40px;
   }
 
-  /* ─────────────────────────────────────────────
-     PROBLEM SECTION
-     ───────────────────────────────────────────── */
+  /* ─── PROBLEM SECTION ───────────────────────── */
   .problem-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -383,9 +320,7 @@
     color: var(--text-muted);
   }
 
-  /* ─────────────────────────────────────────────
-     EDUCATION SECTION (definicje)
-     ───────────────────────────────────────────── */
+  /* ─── EDUCATION SECTION (definicje) ─────────── */
   .edu-quote {
     font-family: var(--display);
     font-style: italic;
@@ -454,9 +389,7 @@
     margin-right: auto;
   }
 
-  /* ─────────────────────────────────────────────
-     CONSULTATION SECTION
-     ───────────────────────────────────────────── */
+  /* ─── CONSULTATION SECTION ─────────────────── */
   .consult-card {
     background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
     border: 1px solid var(--border);
@@ -464,24 +397,6 @@
     border-radius: 2px;
     margin-top: 40px;
     position: relative;
-  }
-  .consult-card::before {
-    content: '30 min';
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 18px;
-    color: var(--gold);
-    letter-spacing: 1px;
-  }
-  .consult-title {
-    font-family: var(--display);
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 28px;
-    color: var(--text);
   }
   .consult-list {
     list-style: none;
@@ -514,9 +429,7 @@
     color: var(--text-soft);
   }
 
-  /* ─────────────────────────────────────────────
-     ABOUT SECTION
-     ───────────────────────────────────────────── */
+  /* ─── ABOUT SECTION ────────────────────────── */
   .about-wrap {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -545,12 +458,6 @@
   .about-photo-inner img {
     width: 100%; height: 100%;
     object-fit: cover;
-  }
-  .about-photo-inner .placeholder {
-    font-family: var(--display);
-    font-style: italic;
-    color: var(--gold);
-    font-size: 80px;
   }
   .about-photo::after {
     content: '14 lat doświadczenia';
@@ -622,9 +529,7 @@
     top: 6px;
   }
 
-  /* ─────────────────────────────────────────────
-     WHO SECTION (komu pomagam)
-     ───────────────────────────────────────────── */
+  /* ─── WHO SECTION ──────────────────────────── */
   .who-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -653,9 +558,7 @@
     line-height: 1.5;
   }
 
-  /* ─────────────────────────────────────────────
-     TESTIMONIALS (placeholder)
-     ───────────────────────────────────────────── */
+  /* ─── TESTIMONIALS ─────────────────────────── */
   .testimonials {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -687,20 +590,8 @@
     color: var(--text-muted);
     margin-top: 4px;
   }
-  .placeholder-badge {
-    display: inline-block;
-    margin-top: 12px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px dashed var(--border);
-    padding: 3px 8px;
-  }
 
-  /* ─────────────────────────────────────────────
-     FAQ
-     ───────────────────────────────────────────── */
+  /* ─── FAQ ──────────────────────────────────── */
   .faq {
     margin-top: 40px;
     max-width: 760px;
@@ -742,9 +633,144 @@
     font-weight: 300;
   }
 
-  /* ─────────────────────────────────────────────
-     FINAL CTA
-     ───────────────────────────────────────────── */
+  /* ─── FORMULARZ KONTAKTOWY ─────────────────── */
+  .form-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
+    border-top: 1px solid var(--border);
+  }
+  .form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .form-intro {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .form-intro h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .form-intro h2 em { font-style: italic; color: var(--gold); }
+  .form-intro p {
+    font-size: 16px;
+    color: var(--text-soft);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .contact-form {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    border-radius: 2px;
+  }
+  .form-row {
+    margin-bottom: 22px;
+  }
+  .form-row.hidden {
+    display: none;
+  }
+  .form-row label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .form-row label .opt {
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 6px;
+  }
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 16px;
+    font-family: var(--body);
+    font-size: 15px;
+    border-radius: 2px;
+    transition: border-color 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .form-row textarea {
+    min-height: 110px;
+    resize: vertical;
+    font-family: var(--body);
+  }
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .form-row select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3e%3cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23c2a368' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 12px;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--bg);
+    border: 1px solid var(--gold);
+    font-family: var(--body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .form-submit:hover {
+    background: var(--gold-bright);
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(194, 163, 104, 0.25);
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+  }
+  .form-success.visible { display: block; }
+  .form-success h3 {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+  .form-success p {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── FINAL CTA ────────────────────────────── */
   .final-cta {
     text-align: center;
     padding: 120px 24px;
@@ -805,9 +831,7 @@
     color: var(--gold);
   }
 
-  /* ─────────────────────────────────────────────
-     FOOTER
-     ───────────────────────────────────────────── */
+  /* ─── FOOTER ───────────────────────────────── */
   footer {
     padding: 40px 24px;
     border-top: 1px solid var(--border);
@@ -824,16 +848,12 @@
     color: var(--text-muted);
     letter-spacing: 1px;
   }
-  .footer-meta a { color: var(--gold); text-decoration: none; }
 
-  /* ─────────────────────────────────────────────
-     ANIMATIONS
-     ───────────────────────────────────────────── */
+  /* ─── ANIMATIONS ───────────────────────────── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .fadein { animation: fadeUp 0.8s ease both; }
   .hero-inner > * { animation: fadeUp 0.7s ease both; }
   .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
   .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
@@ -843,9 +863,7 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ─────────────────────────────────────────────
-     RESPONSIVE
-     ───────────────────────────────────────────── */
+  /* ─── RESPONSIVE ──────────────────────────── */
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-links.open {
@@ -868,39 +886,20 @@
     .who-grid { grid-template-columns: 1fr; }
     .testimonials { grid-template-columns: 1fr; }
     .consult-card { padding: 36px 24px; }
-    .consult-card::before { position: static; display: block; margin-bottom: 16px; }
     .about-specialties ul { grid-template-columns: 1fr; }
     .section { padding: 70px 0; }
+    .form-section { padding: 70px 0; }
+    .contact-form { padding: 28px 22px; }
   }
 
   @media (max-width: 480px) {
     .hero { padding: 60px 0 80px; }
-    .kamil-note { padding: 22px 18px; font-size: 13px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     NOTATKA OD KAMILA (do podmiany / usunięcia w wersji finalnej)
-     ═══════════════════════════════════════════════ -->
-<div class="kamil-note">
-  <div class="kamil-note-inner">
-    <span class="kamil-note-label">📝 Notatka od Kamila</span>
-    <p>Moniko, krótka info zanim obejrzysz mockup. Przy zapisach na konsultację mamy 3 opcje technologiczne, na razie dałem WhatsApp jako główny przycisk, ale możemy to zmienić:</p>
-    <ol>
-      <li><strong>WhatsApp</strong> klika i pisze do Ciebie. Najmniej oporu, w UK ludzie tak wolą.</li>
-      <li><strong>Calendly</strong> sami rezerwują slot w Twoim kalendarzu. Wygląda zawodowo, wymaga konta i pilnowania kalendarza.</li>
-      <li><strong>Formularz</strong> zostawiają mail i telefon, Ty oddzwaniasz. Pełna kontrola nad follow-upem.</li>
-    </ol>
-    <p>Daj znać która opcja Ci pasuje. Można też dwie naraz np. WhatsApp jako główne plus formularz na dole. Numer WhatsApp dorzucę jak się zdecydujesz.</p>
-    <p>Reszta to mockup do feedbacku, czyli kolory, typografia, układ, treści. Powiedz co Ci pasuje, co nie, co chciałabyś dodać lub wywalić. Ten pasek na samej górze znika w wersji finalnej.</p>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     NAV
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ NAV ═══ -->
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#" class="brand">
@@ -912,20 +911,17 @@
       <a href="#problem">Dlaczego to ważne</a>
       <a href="#about">O mnie</a>
       <a href="#faq">FAQ</a>
-      <a href="#" class="nav-cta">Konsultacja</a>
+      <a href="#contact-form" class="nav-cta">Konsultacja</a>
     </div>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-inner">
     <div class="photo-frame">
       <div class="photo-inner">
-        <img src="images/monika.jpg" alt="Monika">
-        M
+        <img src="images/glowne.jpg" alt="Monika — doradca ubezpieczeniowy UK">
       </div>
     </div>
 
@@ -936,20 +932,17 @@
     </p>
 
     <div class="hero-cta-wrap">
-      <a href="https://wa.me/" class="btn-primary">
+      <a href="#" class="btn-primary wa-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
         </svg>
         Napisz na WhatsApp
       </a>
-      <span class="micro-trust">Bezpłatna rozmowa 30 minut · Bez zobowiązań · Po polsku</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     PROBLEM SECTION
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ PROBLEM ═══ -->
 <section class="section section-divider" id="problem">
   <div class="wrap">
     <div class="narrow" style="padding: 0;">
@@ -1000,9 +993,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     EDUCATION SECTION (definicje)
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ EDUCATION ═══ -->
 <section class="section section-divider">
   <div class="wrap">
     <div class="narrow" style="padding: 0;">
@@ -1051,22 +1042,18 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     CONSULTATION
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ CONSULTATION ═══ -->
 <section class="section section-divider">
   <div class="wrap">
     <div class="narrow" style="padding: 0;">
-      <span class="eyebrow">Bezpłatna konsultacja</span>
       <h2 class="section-title">Co dokładnie <em>omówimy</em> podczas spotkania?</h2>
     </div>
 
     <div class="consult-card">
-      <h3 class="consult-title">30 minut, bez zobowiązań, po polsku.</h3>
       <ul class="consult-list">
         <li>Sprawdzimy, co już posiadasz i co dokładnie obejmują Twoje obecne polisy.</li>
         <li>Wyjaśnię prostym językiem, jak działają ubezpieczenia na rynku brytyjskim.</li>
-        <li>Pokażę różnice między dobrymi a słabymi polisami na konkretnych przykładach.</li>
+        <li>Pokażę różnice między polisami na konkretnych przykładach.</li>
         <li>Wytłumaczę definicje z OWU, które decydują o realnej wypłacie świadczenia.</li>
         <li>Sprawdzimy, czy Twoja rodzina jest faktycznie zabezpieczona, czy tylko teoretycznie.</li>
         <li>Odpowiem na wszystkie pytania, nawet te które wydają się głupie.</li>
@@ -1078,16 +1065,13 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     ABOUT
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ ABOUT ═══ -->
 <section class="section section-divider" id="about">
   <div class="wrap">
     <div class="about-wrap">
       <div class="about-photo">
         <div class="about-photo-inner">
-          <img src="images/monika.jpg" alt="Monika">
-          <span class="placeholder">M</span>
+          <img src="images/rodzina.jpg" alt="Monika z rodziną">
         </div>
       </div>
 
@@ -1119,9 +1103,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     WHO
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ WHO ═══ -->
 <section class="section section-divider">
   <div class="wrap">
     <div class="narrow" style="padding: 0; text-align: center;">
@@ -1158,9 +1140,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     TESTIMONIALS (placeholder)
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ TESTIMONIALS ═══ -->
 <section class="section section-divider">
   <div class="wrap">
     <div class="narrow" style="padding: 0; text-align: center;">
@@ -1173,27 +1153,22 @@
         <p class="testimonial-quote">„Pierwszy raz ktoś mi spokojnie wytłumaczył, co naprawdę mam w polisie. Okazało się, że pół tego nie obejmowało tego, co myślałam.”</p>
         <div class="testimonial-author">Anna K.</div>
         <div class="testimonial-meta">Londyn · 2 dzieci</div>
-        <span class="placeholder-badge">przykład</span>
       </div>
       <div class="testimonial">
         <p class="testimonial-quote">„Monika tłumaczy po ludzku, nie po sprzedażowemu. Konsultacja była warta każdej minuty.”</p>
         <div class="testimonial-author">Marek P.</div>
         <div class="testimonial-meta">Manchester · self-employed</div>
-        <span class="placeholder-badge">przykład</span>
       </div>
       <div class="testimonial">
         <p class="testimonial-quote">„Po rozmowie wiedziałam dokładnie, co mi się opłaca, a co to wyrzucanie pieniędzy. Bezcenne.”</p>
         <div class="testimonial-author">Magda S.</div>
         <div class="testimonial-meta">Birmingham · z mężem</div>
-        <span class="placeholder-badge">przykład</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FAQ
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ FAQ ═══ -->
 <section class="section section-divider" id="faq">
   <div class="wrap">
     <div class="narrow" style="padding: 0; text-align: center;">
@@ -1205,7 +1180,7 @@
       <details class="faq-item">
         <summary class="faq-q">Czy konsultacja jest faktycznie darmowa?</summary>
         <div class="faq-a">
-          Tak. Nie pobieram żadnej opłaty za 30-minutową rozmowę, niezależnie od tego, czy zdecydujesz się na jakąkolwiek polisę, czy nie.
+          Tak. Nie pobieram żadnej opłaty za rozmowę, niezależnie od tego, czy zdecydujesz się na jakąkolwiek polisę, czy nie.
         </div>
       </details>
       <details class="faq-item">
@@ -1221,30 +1196,17 @@
         </div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Ile trwa rozmowa?</summary>
-        <div class="faq-a">
-          Około 30 minut. Czasem krócej, czasem dłużej, w zależności od ilości pytań. Nie spieszę się.
-        </div>
-      </details>
-      <details class="faq-item">
         <summary class="faq-q">Czy konsultacja odbywa się online?</summary>
         <div class="faq-a">
           Tak. Rozmawiamy online, najczęściej przez Zoom albo WhatsApp Video. Możemy też porozmawiać przez telefon, jeśli tak Ci wygodniej.
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">W jakim języku rozmawiamy?</summary>
-        <div class="faq-a">
-          Po polsku. Wszystkie definicje i pojęcia tłumaczę z brytyjskiej terminologii ubezpieczeniowej na zrozumiały język.
         </div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FINAL CTA
-     ═══════════════════════════════════════════════ -->
+
+<!-- ═══ FINAL CTA ═══ -->
 <section class="final-cta">
   <div class="final-cta-inner">
     <h2>Nie czekaj, aż będzie <em>za późno</em><br>żeby sprawdzić swoją polisę.</h2>
@@ -1256,37 +1218,153 @@
       <li>Czego Ci brakuje i jakie są realne luki</li>
       <li>Czy Twoja rodzina byłaby zabezpieczona w trudnej sytuacji</li>
     </ul>
-    <a href="https://wa.me/" class="btn-primary" style="margin-top: 20px;">
+    <a href="#" class="btn-primary wa-link" style="margin-top: 20px;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
       </svg>
       Napisz na WhatsApp
     </a>
-    <p class="micro-trust" style="margin-top: 16px;">Bezpłatna rozmowa · Bez presji · Po polsku</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════ -->
+<!-- ═══ FORMULARZ KONTAKTOWY ═══ -->
+<section class="form-section" id="contact-form">
+  <div class="form-wrap">
+    <div class="form-intro">
+      <span class="eyebrow" style="text-align: center; display: block; margin-bottom: 16px;">Umów konsultację</span>
+      <h2>Zostaw <em>kontakt</em> i odezwę się do Ciebie.</h2>
+      <p>Wypełnij krótki formularz, odpowiem w ciągu jednego, dwóch dni roboczych.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         FORMSPREE: podmień TWOJ_FORMSPREE_ENDPOINT na URL z panelu Formspree
+         (np. https://formspree.io/f/abc123def)
+         ═══════════════════════════════════════════ -->
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/TWOJ_FORMSPREE_ENDPOINT" method="POST">
+
+      <div class="form-row">
+        <label for="name">Imię i nazwisko</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-row">
+        <label for="phone">Telefon <span class="opt">(opcjonalnie)</span></label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <div class="form-row">
+        <label for="source">Skąd dowiedziałeś się o mnie?</label>
+        <select id="source" name="source" required>
+          <option value="">Wybierz...</option>
+          <option value="Polecenie znajomego">Polecenie znajomego</option>
+          <option value="Google / wyszukiwarka">Google / wyszukiwarka</option>
+          <option value="Facebook lub Instagram">Facebook lub Instagram</option>
+          <option value="Inne">Inne</option>
+        </select>
+      </div>
+
+      <div class="form-row hidden" id="referrerRow">
+        <label for="referrer">Imię i nazwisko osoby polecającej</label>
+        <input type="text" id="referrer" name="referrer" placeholder="np. Anna Kowalska">
+      </div>
+
+      <div class="form-row">
+        <label for="message">Wiadomość <span class="opt">(opcjonalnie)</span></label>
+        <textarea id="message" name="message" placeholder="Krótko o Twojej sytuacji, czego potrzebujesz, kiedy najlepiej się odezwać..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Wyślij zgłoszenie</button>
+    </form>
+
+    <div id="formSuccess" class="form-success">
+      <h3>Dziękuję</h3>
+      <p>Twoje zgłoszenie zostało wysłane. Odezwę się w ciągu jednego, dwóch dni roboczych.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-brand">Monika</div>
-  <div class="footer-meta">Insurance Adviser · United Kingdom · <a href="https://wa.me/">WhatsApp</a></div>
+  <div class="footer-meta">Insurance Adviser · United Kingdom</div>
 </footer>
 
 <script>
+  // ═══════════════════════════════════════════════════════
+  // KONFIGURACJA WHATSAPP - DO PODMIANY
+  // ═══════════════════════════════════════════════════════
+  // Format numeru: kod kraju + numer bez wiodącego 0, bez spacji, bez plusa
+  // Przykład UK: 07XXX XXX XXX → 447XXXXXXXXX
+  // ═══════════════════════════════════════════════════════
+  const WHATSAPP_NUMBER = "PODMIEN_NUMER";
+  const WHATSAPP_MESSAGE = "Cześć Moniko, trafiłem na Twoją stronę i chciałbym umówić się na konsultację.";
+
+  // Ustawianie wszystkich linków WhatsApp na podstawie konfiguracji powyżej
+  document.querySelectorAll('a.wa-link').forEach(link => {
+    link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  });
+
   // Nav scroll effect
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
   });
 
-  // Scroll reveal (for elements with .reveal class if added)
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Formularz - pokaż pole "Imię i nazwisko polecającego" tylko gdy wybrano "Polecenie znajomego"
+  const sourceSelect = document.getElementById('source');
+  const referrerRow = document.getElementById('referrerRow');
+  const referrerInput = document.getElementById('referrer');
+
+  sourceSelect.addEventListener('change', () => {
+    if (sourceSelect.value === 'Polecenie znajomego') {
+      referrerRow.classList.remove('hidden');
+      referrerInput.setAttribute('required', 'required');
+    } else {
+      referrerRow.classList.add('hidden');
+      referrerInput.removeAttribute('required');
+      referrerInput.value = '';
+    }
+  });
+
+  // Formularz - obsługa wysłania bez przekierowania
+  const form = document.getElementById('contactForm');
+  const successBox = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successBox.classList.add('visible');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        alert('Wystąpił błąd podczas wysyłania. Spróbuj jeszcze raz lub napisz na WhatsApp.');
+      }
+    } catch (err) {
+      alert('Wystąpił błąd podczas wysyłania. Spróbuj jeszcze raz lub napisz na WhatsApp.');
+    }
+  });
 </script>
 
 </body>
